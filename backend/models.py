@@ -1,17 +1,26 @@
 from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey
 from database import Base
 
+
 class Medicine(Base):
     __tablename__ = "medicines"
 
     id = Column(Integer, primary_key=True, index=True)
+
     name = Column(String, nullable=False)
     generic_name = Column(String)
+    category = Column(String)
     manufacturer = Column(String)
+    supplier = Column(String)
+
     batch_no = Column(String)
     expiry_date = Column(Date)
+
     quantity = Column(Integer)
-    price = Column(Float)
+
+    cost_price = Column(Float)
+    mrp = Column(Float)
+
     status = Column(String)
 
 

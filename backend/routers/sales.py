@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from datetime import date
 from database import SessionLocal
+from typing import List
+import schemas
 import models
 
 router = APIRouter(
@@ -16,24 +18,24 @@ def get_db():
     finally:
         db.close()
 
+
 @router.post("/")
 def create_sale(
-    medicine_id: int,
-    quantity_sold: int,
+    sale_data: schemas.SaleCreate,
     db: Session = Depends(get_db)
 ):
-    medicine = db.query(models.Medicine).filter(models.Medicine.id == medicine_id).first()
+    medicine = db.query(models.Medicine).filter(
+        models.Medicine.id == sale_data.medicine_id
+    ).first()
 
     if not medicine:
         raise HTTPException(status_code=404, detail="Medicine not found")
 
-    if medicine.quantity < quantity_sold:
+    if medicine.quantity < sale_data.quantity_sold:
         raise HTTPException(status_code=400, detail="Not enough stock")
 
-    # Reduce stock
-    medicine.quantity -= quantity_sold
+    medicine.quantity -= sale_data.quantity_sold
 
-    # Recalculate status
     if medicine.expiry_date < date.today():
         medicine.status = "Expired"
     elif medicine.quantity == 0:
@@ -43,12 +45,12 @@ def create_sale(
     else:
         medicine.status = "Active"
 
-    total_amount = quantity_sold * medicine.price
+    total_amount = sale_data.quantity_sold * medicine.mrp
 
     sale = models.Sale(
-        invoice_no=f"INV-{medicine_id}-{quantity_sold}",
-        medicine_id=medicine_id,
-        quantity_sold=quantity_sold,
+        invoice_no=f"INV-{sale_data.medicine_id}-{sale_data.quantity_sold}",
+        medicine_id=sale_data.medicine_id,
+        quantity_sold=sale_data.quantity_sold,
         total_amount=total_amount,
         sale_date=date.today()
     )
@@ -62,3 +64,30 @@ def create_sale(
         "remaining_stock": medicine.quantity,
         "total_amount": total_amount
     }
+
+
+@router.get("/", response_model=List[schemas.SaleResponse])
+def get_sales(db: Session = Depends(get_db)):
+    sales = db.query(models.Sale).order_by(
+        models.Sale.sale_date.desc()
+    ).all()
+
+    result = []
+
+    for sale in sales:
+        medicine = db.query(models.Medicine).filter(
+            models.Medicine.id == sale.medicine_id
+        ).first()
+
+        result.append({
+            "id": sale.id,
+            "invoice_no": sale.invoice_no,
+            "customer_name": "Customer",
+            "items_count": sale.quantity_sold,
+            "payment_method": "Cash",
+            "total_amount": sale.total_amount,
+            "sale_date": sale.sale_date,
+            "medicine_name": medicine.name if medicine else "Unknown"
+        })
+
+    return result

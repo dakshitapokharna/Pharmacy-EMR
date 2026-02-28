@@ -65,10 +65,20 @@ def get_summary(db: Session = Depends(get_db)):
     total_medicines = db.query(func.count(models.Medicine.id)).scalar()
 
     total_inventory_value = db.query(
-        func.sum(models.Medicine.quantity * models.Medicine.price)
+        func.sum(models.Medicine.quantity * models.Medicine.mrp)
     ).scalar()
 
     return {
         "total_medicines": total_medicines or 0,
         "total_inventory_value": total_inventory_value or 0
     }
+
+@router.get("/recent-sales")
+def get_recent_sales(db: Session = Depends(get_db)):
+
+    sales = db.query(models.Sale)\
+        .order_by(models.Sale.sale_date.desc())\
+        .limit(5)\
+        .all()
+
+    return sales   

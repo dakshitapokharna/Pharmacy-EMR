@@ -3,23 +3,72 @@
   min-height: 100vh;
 }
 
+/* OUTER SIDEBAR AREA */
 .sidebar {
-  width: 90px;
-  background: #ffffff;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-  border-radius: 0 30px 30px 0;
-  padding: 30px 0;
+  width: 120px;
+  background: #f4f5f7;
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+/* FLOATING PANEL */
+.sidebar-inner {
+  width: 80px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 25px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 22px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
-.icon {
-  width: 42px;
-  height: 42px;
-  background: #eef1f6;
+/* ICON STYLE */
+.sidebar-icon {
+  width: 25px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: #444;
+}
+
+.sidebar-icon:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ACTIVE ICON */
+.sidebar-icon.active {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+/* ADD BUTTON */
+.add-btn {
+  background: #f3f4f6;
+  font-size: 20px;
+}
+
+/* Divider */
+.sidebar-divider {
+  height: 1px;
+  width: 40px;
+  background: #ddd;
+  margin: 10px 0;
+}
+
+/* Bottom gear */
+.sidebar-bottom {
+  margin-top: auto;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .content {

@@ -1,0 +1,257 @@
+/* ================= MAKE SALE SECTION ================= */
+
+.make-sale-card {
+  background: #eaf4f6;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.sale-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sale-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Input Row */
+
+.sale-input-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Inputs */
+
+.sale-input {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: none;
+  background: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  min-width: 220px;
+}
+
+.search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-input {
+  width: 80%;
+  padding-left: 40px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+/* Buttons */
+
+.enter-btn {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(90deg, #4f7cff, #3b5edb);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(79, 124, 255, 0.4);
+}
+.enter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(79, 109, 245, 0.4);
+}
+.enter-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(79, 109, 245, 0.2);
+}
+.bill-btn {
+  height: 44px;
+  padding: 0 28px;
+  border-radius: 12px;
+  border: none;
+  background: #c73a1c;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: auto;
+}
+/* Hover */
+.bill-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(208, 74, 42, 0.4);
+}
+
+/* Click effect */
+.bill-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(208, 74, 42, 0.2);
+}
+
+/* Optional disabled style */
+.bill-btn:disabled,
+.enter-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.sale-table-body {
+  padding: 10px 0;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+.qty-input {
+  width: 60px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+/* Table Header */
+/* Unified Header + Row Grid */
+
+/* Header + Row share SAME grid */
+.sale-table-header,
+.sale-row {
+  display: grid;
+  grid-template-columns: 
+    2fr   /* Medicine Name */
+    2fr   /* Generic Name */
+    1.5fr /* Batch */
+    1.5fr /* Expiry */
+    1fr   /* Quantity */
+    1fr   /* Price */
+    1.5fr /* Supplier */
+    1fr   /* Status */
+    1fr;  /* Actions */
+  align-items: center;
+  column-gap: 20px;  
+}
+
+/* Header styling */
+.sale-table-header {
+  margin-top: 24px;
+  padding: 14px 18px;
+  background: #f4f6f8;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+}
+/* Row styling */
+.sale-row {
+  padding: 14px 18px;
+  background: white;
+  border-radius: 12px;
+  margin-top: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ================= RECENT SALES ================= */
+
+.recent-sales {
+  margin-top: 30px;
+}
+
+.recent-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.sale-card-item {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  border: 1px solid #e5e7eb;
+  transition: 0.2s ease;
+}
+
+.sale-card-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Icon */
+
+.sale-icon {
+  width: 50px;
+  height: 50px;
+  background: #4caf50;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  margin-right: 18px;
+}
+
+/* Middle Info */
+
+.sale-info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sale-info p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Right Section */
+
+.sale-right {
+  margin-left: auto;
+  text-align: right;
+}
+
+.sale-amount {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.sale-date {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Status Badge */
+
+.status-badge.completed {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 12px;
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: 500;
+}
